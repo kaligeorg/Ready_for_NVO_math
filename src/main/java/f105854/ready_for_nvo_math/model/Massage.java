@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "massages")
-public class Massages {
+public class Massage {
     @Id
     @Column(name = "massage_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,14 +16,14 @@ public class Massages {
     String answer;
     boolean isAnswered;
 
-    public Massages() {
+    public Massage() {
     }
 
-    public Massages(boolean isAnswered) {
+    public Massage(boolean isAnswered) {
         this.isAnswered = false;
     }
 
-    public Massages(int id, String senderName, String senderEmail, String massage) {
+    public Massage(int id, String senderName, String senderEmail, String massage) {
         this.id = id;
         this.senderName = senderName;
         this.senderEmail = senderEmail;
