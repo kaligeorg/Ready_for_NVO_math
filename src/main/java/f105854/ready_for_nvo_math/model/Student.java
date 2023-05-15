@@ -14,6 +14,8 @@ public class Student {
     @JoinColumn(name = "user_id", nullable = true)
     User user;
 
+    boolean isDeleted = false;
+
     public Student() {
     }
 
@@ -36,5 +38,13 @@ public class Student {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
     }
 }
