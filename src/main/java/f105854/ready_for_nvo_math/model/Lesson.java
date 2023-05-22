@@ -18,9 +18,9 @@ public class Lesson {
     @JoinColumn(name = "topic_id", nullable = true)
     Topic lessonsTopic;
 
-    String content;
-    String image;
-    String diagram;
+    @OneToMany(mappedBy = "lessonsContent", cascade =  CascadeType.ALL)
+    List<LessonContent> content;
+
 
     @OneToMany(mappedBy = "tasksLesson", cascade = CascadeType.ALL)
     List<Task> ListOfTasksInLesson;
@@ -28,14 +28,12 @@ public class Lesson {
     public Lesson() {
     }
 
-    public Lesson(int id, String title, Topic lessonsTopic, String content, String image, String diagram,
+    public Lesson(int id, String title, Topic lessonsTopic, List<LessonContent> content, List<String> image,
                   List<Task> listOfTasksInLesson) {
         this.id = id;
         this.title = title;
         this.lessonsTopic = lessonsTopic;
         this.content = content;
-        this.image = image;
-        this.diagram = diagram;
         ListOfTasksInLesson = listOfTasksInLesson;
     }
 
@@ -63,28 +61,12 @@ public class Lesson {
         this.lessonsTopic = lessonsTopic;
     }
 
-    public String getContent() {
+    public List<LessonContent> getContent() {
         return content;
     }
 
-    public void setContent(String content) {
+    public void setContent(List<LessonContent> content) {
         this.content = content;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getDiagram() {
-        return diagram;
-    }
-
-    public void setDiagram(String diagram) {
-        this.diagram = diagram;
     }
 
     public List<Task> getListOfTasksInLesson() {

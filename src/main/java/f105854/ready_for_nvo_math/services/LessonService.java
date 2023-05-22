@@ -33,11 +33,8 @@ public class LessonService {
         if (lessonInDB != null) {
             lessonInDB.setTitle(lessonInDB.getTitle());
             lessonInDB.setContent(lesson.getContent());
-            lessonInDB.setImage(lesson.getImage());
-            lessonInDB.setDiagram(lesson.getDiagram());
             lessonInDB.setLessonsTopic(lesson.getLessonsTopic());
             lessonInDB.setListOfTasksInLesson(lesson.getListOfTasksInLesson());
-            lessonInDB.setImage(lesson.getImage());
             lessonRepository.save(lessonInDB);
         } else {
             throw new Exception("Lesson not found!");
