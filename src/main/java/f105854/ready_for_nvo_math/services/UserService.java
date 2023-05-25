@@ -1,7 +1,12 @@
 package f105854.ready_for_nvo_math.services;
 
+import constant.RoleType;
+import f105854.ready_for_nvo_math.model.Student;
+import f105854.ready_for_nvo_math.model.Teacher;
 import f105854.ready_for_nvo_math.model.User;
 import f105854.ready_for_nvo_math.model.UserPrincipal;
+import f105854.ready_for_nvo_math.repository.StudentRepository;
+import f105854.ready_for_nvo_math.repository.TeacherRepository;
 import f105854.ready_for_nvo_math.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -16,6 +21,10 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private TeacherRepository teacherRepository;
+    @Autowired
+    private StudentRepository studentRepository;
 
     public List<User> findAll(){
         List<User> users = userRepository.findAll();
@@ -24,6 +33,10 @@ public class UserService {
 
     public void addUser(@ModelAttribute User user){
         userRepository.save(user);
+        if(user.getRoleType().name() == RoleType.TEACHER.name())
+            teacherRepository.save(new Teacher(user));
+        else if(user.getRoleType().name() == RoleType.STUDENT.name())
+            studentRepository.save(new Student(user));
     }
 
     public User findUserById(@PathVariable("id") int id){
@@ -37,7 +50,7 @@ public class UserService {
             userInDB.setUsername(user.getUsername());
             userInDB.setEmail(user.getEmail());
             userInDB.setActive(user.isActive());
-            userInDB.setRole(user.getRole());
+            userInDB.setRoleType(user.getRoleType());
             userInDB.setFirstName(user.getFirstName());
             userInDB.setLastName(user.getLastName());
             userInDB.setPassword(user.getPassword());

@@ -34,7 +34,7 @@ public class MassageController {
     @GetMapping(path = "/unansweredForms")
     public String showUnansweredFormsPage(Model model) {
         int adminID = 0;
-        if(userService.getCurrentUser().getRole().getRoleType() == RoleType.ADMIN)
+        if(userService.getCurrentUser().getRoleType() == RoleType.ADMIN)
             adminID = userService.getCurrentUser().getId();
         List<Massage> unansweredForms = this.massageService.getUnansweredForms(adminID);
         model.addAttribute("adminId", adminID);

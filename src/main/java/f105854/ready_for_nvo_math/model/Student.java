@@ -1,6 +1,7 @@
 package f105854.ready_for_nvo_math.model;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "students")
@@ -17,6 +18,10 @@ public class Student {
     boolean isDeleted = false;
 
     public Student() {
+    }
+
+    public Student(User user) {
+        this.user = user;
     }
 
     public Student(int id, User user) {

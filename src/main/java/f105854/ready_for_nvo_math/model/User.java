@@ -1,6 +1,8 @@
 package f105854.ready_for_nvo_math.model;
 
-import jakarta.persistence.*;
+import constant.RoleType;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -16,10 +18,7 @@ public class User {
     String username;
     String password;
     boolean isActive;
-
-    @ManyToOne
-    @JoinColumn(name = "role_id", nullable = true)
-    Role role;
+    RoleType roleType;
 
     @OneToOne(mappedBy = "user")
     private Teacher teacher;
@@ -31,7 +30,7 @@ public class User {
     }
 
     public User(int id, String firstName, String lastName, String email, String username, String password,
-                boolean isActive, Role role, Teacher teacher, Student student) {
+                boolean isActive, RoleType roleType, Teacher teacher, Student student) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -39,7 +38,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.isActive = isActive;
-        this.role = role;
+        this.roleType = roleType;
         this.teacher = teacher;
         this.student = student;
     }
@@ -100,12 +99,12 @@ public class User {
         isActive = active;
     }
 
-    public Role getRole() {
-        return role;
+    public RoleType getRoleType() {
+        return roleType;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRoleType(RoleType roleType) {
+        this.roleType = roleType;
     }
 
     public Teacher getTeacher() {

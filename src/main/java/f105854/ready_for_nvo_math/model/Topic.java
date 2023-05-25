@@ -1,7 +1,8 @@
 package f105854.ready_for_nvo_math.model;
 
 import constant.Topic_Class;
-import jakarta.persistence.*;
+import javax.persistence.*;
+import java.util.List;
 
 import java.util.List;
 

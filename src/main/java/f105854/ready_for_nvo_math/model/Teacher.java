@@ -1,6 +1,6 @@
 package f105854.ready_for_nvo_math.model;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "teachers")
@@ -15,6 +15,10 @@ public class Teacher {
     User user;
 
     public Teacher() {
+    }
+
+    public Teacher(User user) {
+        this.user = user;
     }
 
     public Teacher(int id, User user) {

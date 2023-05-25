@@ -1,7 +1,7 @@
 package f105854.ready_for_nvo_math.model;
 
-import jakarta.persistence.*;
 
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -23,18 +23,17 @@ public class Lesson {
 
 
     @OneToMany(mappedBy = "tasksLesson", cascade = CascadeType.ALL)
-    List<Task> ListOfTasksInLesson;
+    List<Task> listOfTasksInLesson;
 
     public Lesson() {
     }
 
-    public Lesson(int id, String title, Topic lessonsTopic, List<LessonContent> content, List<String> image,
-                  List<Task> listOfTasksInLesson) {
+    public Lesson(int id, String title, Topic lessonsTopic, List<LessonContent> content, List<Task> listOfTasksInLesson) {
         this.id = id;
         this.title = title;
         this.lessonsTopic = lessonsTopic;
         this.content = content;
-        ListOfTasksInLesson = listOfTasksInLesson;
+        this.listOfTasksInLesson = listOfTasksInLesson;
     }
 
     public int getId() {
@@ -70,10 +69,10 @@ public class Lesson {
     }
 
     public List<Task> getListOfTasksInLesson() {
-        return ListOfTasksInLesson;
+        return listOfTasksInLesson;
     }
 
     public void setListOfTasksInLesson(List<Task> listOfTasksInLesson) {
-        ListOfTasksInLesson = listOfTasksInLesson;
+        this.listOfTasksInLesson = listOfTasksInLesson;
     }
 }

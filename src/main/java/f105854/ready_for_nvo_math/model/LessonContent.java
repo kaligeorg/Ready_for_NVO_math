@@ -1,6 +1,7 @@
 package f105854.ready_for_nvo_math.model;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "lesson_content")

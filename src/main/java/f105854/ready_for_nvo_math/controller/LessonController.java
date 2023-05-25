@@ -24,6 +24,13 @@ public class LessonController {
         return "lessons";
     }
 
+    @GetMapping(path = "/lessons/{id}")
+    public String viewLesson(@PathVariable("id") int id, Model model) {
+        Lesson lesson = lessonService.findLessonById(id);
+        model.addAttribute("lesson", lesson);
+        return "lesson";
+    }
+
     @GetMapping(path = "/lessons/add")
     public String showAddLessonPage(Model model) {
         model.addAttribute("lesson", new Lesson());
