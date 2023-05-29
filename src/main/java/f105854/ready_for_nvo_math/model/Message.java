@@ -1,34 +1,38 @@
 package f105854.ready_for_nvo_math.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Table(name = "massages")
-public class Massage {
+@Table(name = "messages")
+public class Message {
     @Id
-    @Column(name = "massage_id")
+    @Column(name = "message_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     String senderName;
     String senderEmail;
-    String massage;
+    String message;
     String answer;
     boolean isAnswered;
 
-    public Massage() {
+    @ManyToOne
+    @JoinColumn(name = "admin_id")
+    Admin relatedAdmin;
+
+    public Message() {
     }
 
-    public Massage(boolean isAnswered) {
+    public Message(boolean isAnswered) {
         this.isAnswered = false;
     }
 
-    public Massage(int id, String senderName, String senderEmail, String massage) {
+    public Message(int id, String senderName, String senderEmail, String message, Admin admin) {
         this.id = id;
         this.senderName = senderName;
         this.senderEmail = senderEmail;
-        this.massage = massage;
+        this.message = message;
+        this.relatedAdmin = admin;
     }
 
     public int getId() {
@@ -55,12 +59,12 @@ public class Massage {
         this.senderEmail = senderEmail;
     }
 
-    public String getMassage() {
-        return massage;
+    public String getMessage() {
+        return message;
     }
 
-    public void setMassage(String massage) {
-        this.massage = massage;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getAnswer() {
@@ -77,5 +81,13 @@ public class Massage {
 
     public void setAnswered(boolean answered) {
         isAnswered = answered;
+    }
+
+    public Admin getRelatedAdmin() {
+        return relatedAdmin;
+    }
+
+    public void setRelatedAdmin(Admin relatedAdmin) {
+        this.relatedAdmin = relatedAdmin;
     }
 }

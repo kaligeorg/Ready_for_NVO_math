@@ -11,15 +11,14 @@ import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Service
 public class DataInitializerService {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
     private TopicRepository topicRepository;
+    @Autowired
+    private AdminRepository adminRepository;
     @Autowired
     private TeacherRepository teacherRepository;
     @Autowired
@@ -31,7 +30,7 @@ public class DataInitializerService {
     @Autowired
     private TestRepository testRepository;
     @Autowired
-    private MassageRepository massageRepository;
+    private MessageRepository messageRepository;
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -40,7 +39,7 @@ public class DataInitializerService {
     public DataInitializerService(PasswordEncoder passwordEncoder, TopicRepository topicRepository, TeacherRepository teacherRepository,
                                   StudentRepository studentRepository, TaskRepository taskRepository,
                                   LessonRepository lessonRepository, TestRepository testRepository,
-                                  MassageRepository massageRepository, UserRepository userRepository) {
+                                  MessageRepository messageRepository, UserRepository userRepository) {
         this.passwordEncoder = passwordEncoder;
         this.topicRepository = topicRepository;
         this.teacherRepository = teacherRepository;
@@ -48,7 +47,7 @@ public class DataInitializerService {
         this.taskRepository = taskRepository;
         this.lessonRepository = lessonRepository;
         this.testRepository = testRepository;
-        this.massageRepository = massageRepository;
+        this.messageRepository = messageRepository;
         this.userRepository = userRepository;
     }
 
@@ -60,6 +59,9 @@ public class DataInitializerService {
         userRepository.save(new User(0, "Kalina", "Georgieva", "kaligeorgiewa@gmail.com",
                 "kaligeorg", passwordEncoder.encode("password"), true, RoleType.ADMIN,
                 null, null));
+        User admin = userRepository.findById(1).get();
+        adminRepository.save(new Admin(0, admin, null));
+
 
         //Creating users
         userRepository.save(new User(0, "Maya", "Stoyanova", "m_stoyanova@gmail.com",
@@ -171,6 +173,10 @@ public class DataInitializerService {
                 "12 и 9. Ако всички околни стени сключват равни двустенни ъгли с основата и височината на пирамидата е 4, " +
                 "намерете обема ѝ.", "72", "144", "288", "300", CorrectAnswer.A,
                 "https://www.geogebra.org/m/h3fkd8nh", topic2, lesson3, test2));
+
+        //Creating Massages
+        messageRepository.save(new Message(0, "Ivan Ivanov", "ivan_ivanov@gmail.com",
+                "How can I register?", adminRepository.getById(1)));
 
         System.out.println("Data initialization ends.");
     }
