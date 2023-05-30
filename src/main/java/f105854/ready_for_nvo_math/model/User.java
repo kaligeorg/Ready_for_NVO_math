@@ -2,7 +2,6 @@ package f105854.ready_for_nvo_math.model;
 
 import constant.RoleType;
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "users")

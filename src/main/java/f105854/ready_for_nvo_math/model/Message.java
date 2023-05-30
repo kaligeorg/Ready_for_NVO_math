@@ -12,7 +12,7 @@ public class Message {
 
     String senderName;
     String senderEmail;
-    String message;
+    String messageContent;
     String answer;
     boolean isAnswered;
 
@@ -27,12 +27,24 @@ public class Message {
         this.isAnswered = false;
     }
 
-    public Message(int id, String senderName, String senderEmail, String message, Admin admin) {
+    public Message(int id, String senderName, String senderEmail, String messageContent) {
         this.id = id;
         this.senderName = senderName;
         this.senderEmail = senderEmail;
-        this.message = message;
-        this.relatedAdmin = admin;
+        this.messageContent = messageContent;
+    }
+
+
+
+    public Message(int id, String senderName, String senderEmail, String messageContent, String answer,
+                   boolean isAnswered, Admin relatedAdmin) {
+        this.id = id;
+        this.senderName = senderName;
+        this.senderEmail = senderEmail;
+        this.messageContent = messageContent;
+        this.answer = answer;
+        this.isAnswered = isAnswered;
+        this.relatedAdmin = relatedAdmin;
     }
 
     public int getId() {
@@ -59,12 +71,12 @@ public class Message {
         this.senderEmail = senderEmail;
     }
 
-    public String getMessage() {
-        return message;
+    public String getMessageContent() {
+        return messageContent;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setMessageContent(String messageContent) {
+        this.messageContent = messageContent;
     }
 
     public String getAnswer() {

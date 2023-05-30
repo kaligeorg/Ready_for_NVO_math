@@ -37,9 +37,9 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @GetMapping("/users/edit/{id}")
-    public String showUpdateForm(@PathVariable("id") int id, Model model) {
-        User user = userService.findUserById(id);
+    @GetMapping("/users/edit")
+    public String showUpdateForm(Model model) {
+        User user = userService.findUserById(userService.getCurrentUser().getId());
         model.addAttribute("user", user);
         return "users-edit";
     }
@@ -47,8 +47,9 @@ public class UserController {
     @PostMapping("/users/edit/{id}")
     public String updateUser(@ModelAttribute User user) throws Exception {
         userService.updateUser(user);
-        return "redirect:/users";
+        return "redirect:/";
     }
+
 
     @GetMapping("/users/delete/{id}")
     public String deleteUser(@PathVariable("id") int id) {

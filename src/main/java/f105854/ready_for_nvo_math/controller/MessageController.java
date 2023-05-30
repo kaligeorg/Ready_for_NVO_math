@@ -2,6 +2,7 @@ package f105854.ready_for_nvo_math.controller;
 
 import constant.RoleType;
 import f105854.ready_for_nvo_math.model.Message;
+import f105854.ready_for_nvo_math.model.User;
 import f105854.ready_for_nvo_math.services.MessageService;
 import f105854.ready_for_nvo_math.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ public class MessageController {
 
     @Autowired
     private UserService userService;
+    private Message message;
 
     @GetMapping(path = "/messages")
     public String showAllFormsPage(Model model) {
@@ -31,8 +33,8 @@ public class MessageController {
     }
 
 
-    @GetMapping(path = "/unansweredForms")
-    public String showUnansweredFormsPage(Model model) {
+    @GetMapping(path = "/unansweredMessages")
+    public String showUnansweredMessages(Model model) {
         int adminID = 0;
         if(userService.getCurrentUser().getRoleType() == RoleType.ADMIN)
             adminID = userService.getCurrentUser().getId();
@@ -50,10 +52,10 @@ public class MessageController {
         return "messages-answer";
     }
 
-    @PostMapping("/messages/{id}")
-    public String answerMessage(@ModelAttribute Message message) {
+    @PostMapping("/messages/answer/{id}")
+    public String answerMessage(@ModelAttribute Message message) throws Exception{
         messageService.answerMessage(message);
-        return "redirect:/unansweredForms";
+        return "redirect:/messages";
     }
 
     @GetMapping(path = "/messages/add")
@@ -65,15 +67,13 @@ public class MessageController {
 
     @PostMapping(path = "/messages/add")
     public String addMessage(@ModelAttribute Message message) {
-
         messageService.addMessage(message);
-
         return "redirect:/";
     }
 
     @GetMapping("/messages/delete/{id}")
     public String deleteMessage(@PathVariable("id") int id) {
         messageService.deleteMessage(id);
-        return "redirect:/unansweredForms";
+        return "redirect:/messages";
     }
 }

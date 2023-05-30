@@ -1,7 +1,9 @@
 package f105854.ready_for_nvo_math.controller;
 
 import f105854.ready_for_nvo_math.model.Admin;
+import f105854.ready_for_nvo_math.model.User;
 import f105854.ready_for_nvo_math.services.AdminService;
+import f105854.ready_for_nvo_math.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,7 +38,8 @@ public class AdminController {
         return "redirect:/admins";
     }
 
-    @GetMapping("/admins/edit/{id}")
+
+    @GetMapping("/admins/edit{id}")
     public String showUpdateForm(@PathVariable("id") int id, Model model) {
         Admin admin = adminService.findAdminById(id);
         model.addAttribute("admin", admin);
@@ -46,7 +49,7 @@ public class AdminController {
     @PostMapping("/admins/edit/{id}")
     public String updateAdmin(@ModelAttribute Admin admin) throws Exception {
         adminService.updateAdmin(admin);
-        return "redirect:/admins";
+        return "redirect:/admins/edit";
     }
 
     @GetMapping("/admins/delete/{id}")

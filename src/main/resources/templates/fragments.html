@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+<div th:fragment="navbar" class="row">
+
+    <!--    if it is not authenticated-->
+        <nav th:if="!${#request.isUserInRole('ADMIN')} and !${#request.isUserInRole('TEACHER')} and !${#request.isUserInRole('STUDENT')}" class="navbar expanded">
+            <ul>
+                <li>
+                    <a href="/">Начало</a>
+                </li>
+                <li>
+                    <a href="/login">Вписване</a>
+                </li>
+                <li>
+                    <a href="/register">Регистрация</a>
+                </li>
+                <li>
+                    <a href="/messages/add">Изпращане на съобщение</a>
+                </li>
+            </ul>
+        </nav>
+
+    <!--    if it is logged as teacher-->
+    <nav th:if="!${#request.isUserInRole('ADMIN')} and ${#request.isUserInRole('TEACHER')} and !${#request.isUserInRole('STUDENT')}" class="navbar expanded">
+        <ul>
+            <li>
+                <a href="/">Начало</a>
+            </li>
+            <li>
+                <a href="/topics">Теми</a>
+            </li>
+            <li>
+                <a href="/users/edit/">Профил</a>
+            </li>
+            <li>
+                <a href="/messages/add">Изпращане на съобщение</a>
+            </li>
+            <li>
+                <a href="/logout">Отписване</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!--    if it is logged as student-->
+    <nav th:if="!${#request.isUserInRole('ADMIN')} and !${#request.isUserInRole('TEACHER')} and ${#request.isUserInRole('STUDENT')}" class="navbar expanded">
+        <ul>
+            <li>
+                <a href="/">Начало</a>
+            </li>
+            <li>
+                <a href="/topics">Теми</a>
+            </li>
+            <li>
+                <a href="/users/edit/">Профил</a>
+            </li>
+            <li>
+                <a href="/messages/add">Изпращане на съобщение</a>
+            </li>
+            <li>
+                <a href="/logout">Отписване</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!--    if it is logged as admin-->
+    <nav th:if="${#request.isUserInRole('ADMIN')} and !${#request.isUserInRole('TEACHER')} and !${#request.isUserInRole('STUDENT')}" class="navbar expanded">
+        <ul>
+            <li>
+                <a href="/topics">Теми</a>
+            </li>
+            <li>
+                <a href="/unansweredMessages">Съобщения</a>
+            </li>
+            <li>
+                <a href="/users/edit">Профил</a>
+            </li>
+            <li>
+                <a href="/logout">Отписване</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+</body>
+</html>

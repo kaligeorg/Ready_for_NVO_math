@@ -28,7 +28,7 @@ public class LessonController {
     public String viewLesson(@PathVariable("id") int id, Model model) {
         Lesson lesson = lessonService.findLessonById(id);
         model.addAttribute("lesson", lesson);
-        return "lesson";
+        return "lessons";
     }
 
     @GetMapping(path = "/lessons/add")

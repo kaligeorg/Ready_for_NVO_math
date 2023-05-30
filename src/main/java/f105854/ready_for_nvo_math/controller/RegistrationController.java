@@ -23,7 +23,7 @@ public class RegistrationController {
         RegistrationRequest registrationRequest = new RegistrationRequest(firstName, lastName, username, password,
                 email, roleType );
         registrationService.register(registrationRequest);
-        return "/register_success";
+        return "/login";
     }
 
 

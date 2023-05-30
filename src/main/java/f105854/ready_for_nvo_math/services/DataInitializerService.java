@@ -113,7 +113,7 @@ public class DataInitializerService {
 
         //Creating lessons
         lessonRepository.save(new Lesson(0, "Централни тенденции - мода, медиана и средноаритметично",
-                topic2, null, null));
+                topic1, null, null));
         Lesson lesson1 = lessonRepository.findById(1).get();
 
         lessonRepository.save(new Lesson(0, "Права призма", topic2, null, null));
@@ -176,7 +176,7 @@ public class DataInitializerService {
 
         //Creating Massages
         messageRepository.save(new Message(0, "Ivan Ivanov", "ivan_ivanov@gmail.com",
-                "How can I register?", adminRepository.getById(1)));
+                "How can I register?"));
 
         System.out.println("Data initialization ends.");
     }
