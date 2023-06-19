@@ -9,7 +9,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
 
-  <title>Профил</title>
+  <title>Добавяне на урок</title>
 </head>
 <body>
 <div th:replace="fragments :: navbar" />
@@ -18,35 +18,21 @@
   <div style="width:600px;margin-left: auto;margin-right: auto;margin-top:24px;padding: 24px;">
     <div class="card">
       <div class="card-body" style="padding: 24px;">
-        <form action="#" th:action="@{/users/edit/{id}(id=${user.id})}" th:object="${user}" th:method="post">
+        <form action="#" th:action="@{/topics/add}" th:object="${topic}" method="post">
           <div class="form-group">
-            <label for="FirstName">Име</label>
-            <input type="text" class="form-control" id="FirstName"
-                   aria-describedby="emailHelp" name="firstName" th:field="*{firstName}">
+            <label>Тема</label>
+            <input type="text" class="form-control"
+                   aria-describedby="emailHelp" name="Topic" th:field="*{topicName}">
           </div>
           <div class="form-group">
-            <label for="LastName">Фамилия</label>
-            <input type="text" class="form-control" id="LastName"
-                   aria-describedby="emailHelp" name="lastName" th:field="*{lastName}">
+            <label>Опицание</label>
+            <input type="text" class="form-control"
+                   aria-describedby="emailHelp" name="Description" th:field="*{description}">
           </div>
           <div class="form-group">
-            <label for="Username">Потребителско име</label>
-            <input type="text" class="form-control" id="Username"
-                   aria-describedby="emailHelp" name="username" th:field="*{username}">
-          </div>
-          <div class="form-group">
-            <label for="Email">E-mail</label>
-            <input type="email" class="form-control" id="Email"
-                   aria-describedby="emailHelp" name="email" th:field="*{email}">
-          </div>
-          <div class="form-group">
-            <label for="Password">Парола</label>
-            <input type="password" class="form-control" id="Password" name="password" th:field="*{password}">
-          </div>
-          <div class="form-group">
-            <label for="RoleType">Роля</label>
-            <input type="text" class="form-control" id="RoleType"
-                   aria-describedby="emailHelp" name="roleType" th:field="*{roleType}">
+            <label for="topicClass">Клас</label>
+            <input type="text" class="form-control" id="topicClass"
+                   aria-describedby="emailHelp" name="topicClass" th:field="*{topic_class}">
           </div>
           <div class="form-group">
           </div>

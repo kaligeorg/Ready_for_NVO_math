@@ -18,35 +18,21 @@
   <div style="width:600px;margin-left: auto;margin-right: auto;margin-top:24px;padding: 24px;">
     <div class="card">
       <div class="card-body" style="padding: 24px;">
-        <form action="#" th:action="@{/users/edit/{id}(id=${user.id})}" th:object="${user}" th:method="post">
+        <form action="#" th:action="@{/topics/edit/{id}(id=${topic.id})}" th:object="${topic}" th:method="post">
           <div class="form-group">
-            <label for="FirstName">Име</label>
-            <input type="text" class="form-control" id="FirstName"
-                   aria-describedby="emailHelp" name="firstName" th:field="*{firstName}">
+            <label for="topicName">Тема</label>
+            <input type="text" class="form-control" id="TopicName"
+                   aria-describedby="emailHelp" name="topicName" th:field="*{topicName}">
           </div>
           <div class="form-group">
-            <label for="LastName">Фамилия</label>
-            <input type="text" class="form-control" id="LastName"
-                   aria-describedby="emailHelp" name="lastName" th:field="*{lastName}">
+            <label for="description">Описание</label>
+            <input type="text" class="form-control" id="description"
+                   aria-describedby="emailHelp" name="description" th:field="*{description}">
           </div>
           <div class="form-group">
-            <label for="Username">Потребителско име</label>
-            <input type="text" class="form-control" id="Username"
-                   aria-describedby="emailHelp" name="username" th:field="*{username}">
-          </div>
-          <div class="form-group">
-            <label for="Email">E-mail</label>
-            <input type="email" class="form-control" id="Email"
-                   aria-describedby="emailHelp" name="email" th:field="*{email}">
-          </div>
-          <div class="form-group">
-            <label for="Password">Парола</label>
-            <input type="password" class="form-control" id="Password" name="password" th:field="*{password}">
-          </div>
-          <div class="form-group">
-            <label for="RoleType">Роля</label>
-            <input type="text" class="form-control" id="RoleType"
-                   aria-describedby="emailHelp" name="roleType" th:field="*{roleType}">
+            <label for="topicClass">Клас</label>
+            <input type="text" class="form-control" id="topicClass"
+                   aria-describedby="emailHelp" name="topicClass" th:field="*{topic_class}">
           </div>
           <div class="form-group">
           </div>
@@ -57,7 +43,6 @@
       </div>
     </div>
   </div>
-</div>
 </div>
 <script type="text/javascript">
 </script>

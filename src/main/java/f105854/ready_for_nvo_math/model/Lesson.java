@@ -19,7 +19,7 @@ public class Lesson {
     Topic lessonsTopic;
 
     @OneToMany(mappedBy = "lessonsContent", cascade =  CascadeType.ALL)
-    List<LessonContent> content;
+    List<LessonContent> lessonContents;
 
 
     @OneToMany(mappedBy = "tasksLesson", cascade = CascadeType.ALL)
@@ -28,11 +28,11 @@ public class Lesson {
     public Lesson() {
     }
 
-    public Lesson(int id, String title, Topic lessonsTopic, List<LessonContent> content, List<Task> listOfTasksInLesson) {
+    public Lesson(int id, String title, Topic lessonsTopic, List<LessonContent> lessonContents, List<Task> listOfTasksInLesson) {
         this.id = id;
         this.title = title;
         this.lessonsTopic = lessonsTopic;
-        this.content = content;
+        this.lessonContents = lessonContents;
         this.listOfTasksInLesson = listOfTasksInLesson;
     }
 
@@ -60,12 +60,12 @@ public class Lesson {
         this.lessonsTopic = lessonsTopic;
     }
 
-    public List<LessonContent> getContent() {
-        return content;
+    public List<LessonContent> getLessonContents() {
+        return lessonContents;
     }
 
-    public void setContent(List<LessonContent> content) {
-        this.content = content;
+    public void setLessonContents(List<LessonContent> lessonContents) {
+        this.lessonContents = lessonContents;
     }
 
     public List<Task> getListOfTasksInLesson() {

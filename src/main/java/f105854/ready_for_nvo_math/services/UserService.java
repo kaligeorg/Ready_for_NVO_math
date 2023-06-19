@@ -1,6 +1,7 @@
 package f105854.ready_for_nvo_math.services;
 
 import constant.RoleType;
+import f105854.ready_for_nvo_math.configuration.PasswordEncoder;
 import f105854.ready_for_nvo_math.model.Student;
 import f105854.ready_for_nvo_math.model.Teacher;
 import f105854.ready_for_nvo_math.model.User;
@@ -25,6 +26,8 @@ public class UserService {
     private TeacherRepository teacherRepository;
     @Autowired
     private StudentRepository studentRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public List<User> findAll(){
         List<User> users = userRepository.findAll();
@@ -53,7 +56,8 @@ public class UserService {
             userInDB.setRoleType(user.getRoleType());
             userInDB.setFirstName(user.getFirstName());
             userInDB.setLastName(user.getLastName());
-            userInDB.setPassword(user.getPassword());
+            String encodedPassword = passwordEncoder.bCryptPasswordEncoder().encode(user.getPassword());
+            userInDB.setPassword(encodedPassword);
             userRepository.save(userInDB);
         } else {
             throw new Exception("User not found!");

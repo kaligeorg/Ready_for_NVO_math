@@ -24,6 +24,13 @@ public class TopicController {
         return "topics";
     }
 
+    @GetMapping(path = "/topics/view")
+    public String showTopicsForStudentsPage(Model model) {
+        List<Topic> topics = topicService.findAll();
+        model.addAttribute("topics", topics);
+        return "topics-view";
+    }
+
     @GetMapping(path = "/topics/add")
     public String showAddTopicPage(Model model) {
         model.addAttribute("topic", new Topic());

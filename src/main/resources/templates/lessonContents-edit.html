@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link th:href="@{/css/menu.css}" rel="stylesheet"/>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+
+  <title>Уроци</title>
+</head>
+<body>
+<div th:replace="fragments :: navbar" />
+
+<div class="container">
+  <div style="width:600px;margin-left: auto;margin-right: auto;margin-top:24px;padding: 24px;">
+    <div class="card">
+      <div class="card-body" style="padding: 24px;">
+        <form action="#" th:action="@{/lessonContents/edit/{id}(id=${lessonContent.id})}" th:object="${lessonContent}" th:method="post">
+          <div class="form-group">
+            <label for="Content">Заглавие</label>
+            <input type="text" class="form-control" id="Content"
+                   aria-describedby="emailHelp" name="Content" th:field="*{content}">
+          </div>
+          <div class="form-group">
+            <label for="Image">Чертеж/Изображение</label>
+            <input type="text" class="form-control" id="Image"
+                   aria-describedby="emailHelp" name="Image" th:field="*{image}">
+          </div>
+          <div class="form-group">
+            <label for="Lesson">Урок</label>
+            <input type="text" class="form-control" id="Lesson"
+                   aria-describedby="emailHelp" name="Lesson" th:field="*{lessonsContent}">
+          </div>
+          <div style="margin-top: 12px;">
+            <button type="submit" class="btn btn-success">Запазване</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+</script>
+</body>
+</html>

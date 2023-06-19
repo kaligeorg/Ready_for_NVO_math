@@ -56,7 +56,7 @@ public class DataInitializerService {
         System.out.println("Data initialization starts.");
 
         //Creating admin
-        userRepository.save(new User(0, "Kalina", "Georgieva", "kaligeorgiewa@gmail.com",
+        userRepository.save(new User(0, "Калина", "Георгиева", "kaligeorgiewa@gmail.com",
                 "kaligeorg", passwordEncoder.encode("password"), true, RoleType.ADMIN,
                 null, null));
         User admin = userRepository.findById(1).get();
@@ -64,23 +64,23 @@ public class DataInitializerService {
 
 
         //Creating users
-        userRepository.save(new User(0, "Maya", "Stoyanova", "m_stoyanova@gmail.com",
+        userRepository.save(new User(0, "Мая", "Стоянова", "m_stoyanova@gmail.com",
                 "m_stoyanova", passwordEncoder.encode("password"), true, RoleType.TEACHER,
                 null, null));
-        userRepository.save(new User(0, "Simeon", "Radev", "s_radev@gmail.com",
-                "s_radev", "password", true, RoleType.TEACHER,
+        userRepository.save(new User(0, "Симеон", "Радев", "s_radev@gmail.com",
+                "s_radev", passwordEncoder.encode("password"), true, RoleType.TEACHER,
                 null, null));
-        userRepository.save(new User(0, "Tanya", "Peneva", "t_peneva@gmail.com",
-                "t_peneva", "password", true, RoleType.TEACHER,
+        userRepository.save(new User(0, "Таня", "Пенева", "t_peneva@gmail.com",
+                "t_peneva", passwordEncoder.encode("password"), true, RoleType.TEACHER,
                 null, null));
-        userRepository.save(new User(0, "Deyan", "Georgiev", "d_georgiev@gmail.com",
-                "d_georgiev", "password", true, RoleType.STUDENT,
+        userRepository.save(new User(0, "Деян", "Георгиев", "d_georgiev@gmail.com",
+                "d_georgiev", passwordEncoder.encode("password"), true, RoleType.STUDENT,
                 null, null));
-        userRepository.save(new User(0, "Kamen", "Pavlov", "k_pavlov@gmail.com",
-                "k_pavlov", "password", true, RoleType.STUDENT,
+        userRepository.save(new User(0, "Камен", "Павлов", "k_pavlov@gmail.com",
+                "k_pavlov", passwordEncoder.encode("password"), true, RoleType.STUDENT,
                 null, null));
-        userRepository.save(new User(0, "Maria", "Daskalova", "m_daskalova@gmail.com",
-                "m_daskalova", "password", true, RoleType.STUDENT,
+        userRepository.save(new User(0, "Мария", "Даскалова", "m_daskalova@gmail.com",
+                "m_daskalova", passwordEncoder.encode("password"), true, RoleType.STUDENT,
                 null, null));
 
         User user1 = userRepository.findById(2).get();
@@ -101,12 +101,13 @@ public class DataInitializerService {
         studentRepository.save(new Student(0, user6));
 
         // Creating topics
-        topicRepository.save(new Topic(0, "Statistics", "Statistics is a branch of applied mathematics that involves the " +
-                "collection, description, analysis, and inference of conclusions from quantitative data.", Topic_Class.TENTH,
+        topicRepository.save(new Topic(0, "Статистика", "Статистиката е наука, която се занимава " +
+                "със събирането, организирането, анализа, интерпретацията и представянето на данни.", Topic_Class.TENTH,
                 null, null, null));
-        topicRepository.save(new Topic(0, "Stereometry", "Stereomety deals with the measurement of " +
-                "volumes and other metrical elements of solid figures.", Topic_Class.TENTH, null,
-                null, null));
+        topicRepository.save(new Topic(0, "Стереометрия", "Стереометрията е дял от евклидовата " +
+                "геометрия, който изучава главно геометрични тела в тримерното пространство. Тя се занимава и с измерване " +
+                "на обемите на различни тела като например цилиндър, конус, пресечен конус, сфера, призма и др.",
+                Topic_Class.TENTH, null, null, null));
 
         Topic topic1 = topicRepository.findById(1).get();
         Topic topic2 = topicRepository.findById(2).get();

@@ -14,7 +14,7 @@ public class Topic {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    String topic;
+    String topicName;
     String description;
     Topic_Class topic_class;
 
@@ -30,10 +30,16 @@ public class Topic {
     public Topic() {
     }
 
-    public Topic(int id, String topic, String description, Topic_Class topic_class, List<Task> listOfTasksInTopic,
+    public Topic(String topicName, String description, Topic_Class topic_class) {
+        this.topicName = topicName;
+        this.description = description;
+        this.topic_class = topic_class;
+    }
+
+    public Topic(int id, String topicName, String description, Topic_Class topic_class, List<Task> listOfTasksInTopic,
                  List<Lesson> listOfLessonsInTopic, List<Test> listOfTestsInTopic) {
         this.id = id;
-        this.topic = topic;
+        this.topicName = topicName;
         this.description = description;
         this.topic_class = topic_class;
         this.listOfTasksInTopic = listOfTasksInTopic;
@@ -49,12 +55,12 @@ public class Topic {
         this.id = id;
     }
 
-    public String getTopic() {
-        return topic;
+    public String getTopicName() {
+        return topicName;
     }
 
-    public void setTopic(String topic) {
-        this.topic = topic;
+    public void setTopicName(String topicName) {
+        this.topicName = topicName;
     }
 
     public String getDescription() {

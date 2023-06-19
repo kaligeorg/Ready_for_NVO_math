@@ -31,7 +31,7 @@ public class TopicService {
     public void updateTopic(@ModelAttribute Topic topic) throws Exception {
         Topic topicInDB = topicRepository.findById(topic.getId()).orElse(null);
         if (topicInDB != null) {
-            topicInDB.setTopic(topicInDB.getTopic());
+            topicInDB.setTopicName(topic.getTopicName());
             topicInDB.setDescription(topic.getDescription());
             topicInDB.setTopic_class(topic.getTopic_class());
             topicRepository.save(topicInDB);

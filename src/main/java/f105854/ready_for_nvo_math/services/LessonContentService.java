@@ -33,6 +33,7 @@ public class LessonContentService {
         if (lessonContentInDB != null) {
             lessonContentInDB.setContent(lessonContent.getContent());
             lessonContentInDB.setImage(lessonContent.getImage());
+            lessonContentInDB.setLessonsContent(lessonContent.getLessonsContent());
             lessonContentRepository.save(lessonContentInDB);
         } else {
             throw new Exception("Lesson not found!");

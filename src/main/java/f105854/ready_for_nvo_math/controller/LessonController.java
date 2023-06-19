@@ -17,18 +17,32 @@ public class LessonController {
     @Autowired
     private LessonService lessonService;
 
-    @GetMapping(path = "/lessons")
-    public String showLessonsPage(Model model) {
-        List<Lesson> lessons = lessonService.findAll();
+    @GetMapping(path = "/lessonsInTopicForTeachers/{id}")
+    public String showLessonsInTopicForTeachers(@PathVariable("id") int id, Model model) {
+        List<Lesson> lessons = lessonService.findLessonsByTopic(id);
         model.addAttribute("lessons", lessons);
         return "lessons";
+    }
+
+    @GetMapping(path = "/lessonsInTopicForStudents/{id}")
+    public String showLessonsInTopicForStudents(@PathVariable("id") int id, Model model) {
+        List<Lesson> lessons = lessonService.findLessonsByTopic(id);
+        model.addAttribute("lessons", lessons);
+        return "lessons-for-students";
     }
 
     @GetMapping(path = "/lessons/{id}")
     public String viewLesson(@PathVariable("id") int id, Model model) {
         Lesson lesson = lessonService.findLessonById(id);
         model.addAttribute("lesson", lesson);
-        return "lessons";
+        return "lessons-view";
+    }
+
+    @GetMapping(path = "/lessons/view/{id}")
+    public String viewLessonFromStudents(@PathVariable("id") int id, Model model) {
+        Lesson lesson = lessonService.findLessonById(id);
+        model.addAttribute("lesson", lesson);
+        return "lessons-view-students";
     }
 
     @GetMapping(path = "/lessons/add")
@@ -53,12 +67,13 @@ public class LessonController {
     @PostMapping("/lessons/edit/{id}")
     public String updateLesson(@ModelAttribute Lesson lesson) throws Exception {
         lessonService.updateLesson(lesson);
-        return "redirect:/lessons";
+        return "redirect:/lessons/" + lesson.getId();
     }
 
     @GetMapping("/lessons/delete/{id}")
     public String deleteLesson(@PathVariable("id") int id) {
+        int topicID = lessonService.findTopicsID(id);
         lessonService.deleteLesson(id);
-        return "redirect:/lessons";
+        return "redirect:/lessonsInTopicForTeachers/" + topicID;
     }
 }

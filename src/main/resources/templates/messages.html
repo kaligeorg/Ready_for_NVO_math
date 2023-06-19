@@ -13,32 +13,38 @@
 <body>
   <div th:replace="fragments :: navbar" />
 
-  <div class="container my-5 col-md-8">
-    <table class="table  table-striped table-hover">
-      <thead>
-      <tr>
-        <th scope="col">Име</th>
-        <th scope="col">E-mail</th>
-        <th scope="col">Съобщение</th>
-        <th scope="col">Отговор</th>
-      </tr>
-      </thead>
-      <div th:if="${messages.isEmpty()}">Няма съобщения</div>
-      <tbody>
-      <tr th:each="message :${messages}">
-        <td th:text="${message.getSenderName()}"></td>
-        <td th:text="${message.getSenderEmail()}"></td>
-        <td th:text="${message.getMessageContent()}"></td>
-        <td th:text="${message.getAnswer()}"></td>
-        <td>
-          <a style="color:blue" th:href="@{/messages/answer/{id}(id=${message.id})}"><i class="fa-solid fa-pen-to-square ms-4"></i></a>
-          <a style="color:red" th:href="@{/messages/delete/{id}(id=${message.id})}"><i class="fa-solid fa-trash ms-4"></i></a>
-        </td>
+  <div class="container">
+    <div style="width:1400px;margin-left: auto;margin-right: auto;margin-top:24px;padding: 24px;">
+      <div class="card">
+        <div class="card-block" style="padding: 24px;">
+          <table class="table  table-striped table-hover">
+            <thead>
+            <tr>
+              <th scope="col">Име</th>
+              <th scope="col">E-mail</th>
+              <th scope="col">Съобщение</th>
+              <th scope="col">Отговор</th>
+            </tr>
+            </thead>
+            <div th:if="${messages.isEmpty()}">Няма съобщения</div>
+            <tbody>
+            <tr th:each="message :${messages}">
+              <td th:text="${message.getSenderName()}"></td>
+              <td th:text="${message.getSenderEmail()}"></td>
+              <td th:text="${message.getMessageContent()}"></td>
+              <td th:text="${message.getAnswer()}"></td>
+              <td>
+                <a style="color:blue" th:href="@{/messages/answer/{id}(id=${message.id})}"><i class="fa-solid fa-pen-to-square ms-4"></i></a>
+                <a style="color:red" th:href="@{/messages/delete/{id}(id=${message.id})}"><i class="fa-solid fa-trash ms-4"></i></a>
+              </td>
 
-      </tr>
+            </tr>
 
-      </tbody>
-    </table>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 
 
