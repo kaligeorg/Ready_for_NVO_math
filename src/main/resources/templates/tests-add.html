@@ -18,7 +18,7 @@
     <div style="width:600px;margin-left: auto;margin-right: auto;margin-top:24px;padding: 24px;">
         <div class="card">
             <div class="card-body" style="padding: 24px;">
-                <form action="#" th:action="@{/lessons/add}" th:object="${lesson}" method="post">
+                <form action="#" th:action="@{/tests/add}" th:object="${test}" method="post">
                     <div class="form-group">
                         <label>Тема</label>
                         <input type="text" class="form-control"
@@ -27,7 +27,7 @@
                     <div class="form-group">
                         <label>Тема</label>
                         <input type="text" class="form-control"
-                               aria-describedby="emailHelp" name="Topic" th:field="*{lessonsTopic}">
+                               aria-describedby="emailHelp" name="Topic" th:field="*{testsTopic}">
                     </div>
                     <div class="form-group">
                     </div>

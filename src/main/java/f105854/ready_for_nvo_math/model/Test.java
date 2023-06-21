@@ -46,11 +46,11 @@ public class Test {
         this.title = title;
     }
 
-    public Topic getTopic() {
+    public Topic getTestsTopic() {
         return testsTopic;
     }
 
-    public void setTopic(Topic topic) {
+    public void setTestsTopic(Topic topic) {
         this.testsTopic = topic;
     }
 

@@ -31,13 +31,16 @@ public class TaskService {
     public void updateTask(@ModelAttribute Task task) throws Exception {
         Task taskInDB = taskRepository.findById(task.getId()).orElse(null);
         if (taskInDB != null) {
-            taskInDB.setCondition(taskInDB.getCondition());
+            taskInDB.setCondition(task.getCondition());
             taskInDB.setAnswer1(task.getAnswer1());
             taskInDB.setAnswer2(task.getAnswer2());
             taskInDB.setAnswer3(task.getAnswer3());
             taskInDB.setAnswer4(task.getAnswer4());
             taskInDB.setCorrectAnswer(task.getCorrectAnswer());
             taskInDB.setImage(task.getImage());
+            taskInDB.setTasksTopic(task.getTasksTopic());
+            taskInDB.setTasksLesson(task.getTasksLesson());
+            taskInDB.setTasksTest(task.getTasksTest());
             taskRepository.save(taskInDB);
         } else {
             throw new Exception("Task not found!");

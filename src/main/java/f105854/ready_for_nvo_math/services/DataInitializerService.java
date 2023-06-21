@@ -146,7 +146,7 @@ public class DataInitializerService {
         testRepository.save(new Test(0, "Стереометрия", topic2, null));
 
         Test test1 = testRepository.findById(1).get();
-        Test test2 = testRepository.findById(1).get();
+        Test test2 = testRepository.findById(2).get();
 
         //Creating tasks
         taskRepository.save(new Task(0, "Намерете средноаритметичната стойност на ред 4, 9, 10, 12, 13, 30.",

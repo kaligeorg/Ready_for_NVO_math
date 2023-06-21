@@ -20,7 +20,7 @@
       <div class="card-body" style="padding: 24px;">
         <form action="#" th:action="@{/lessonContents/edit/{id}(id=${lessonContent.id})}" th:object="${lessonContent}" th:method="post">
           <div class="form-group">
-            <label for="Content">Заглавие</label>
+            <label for="Content">Съдържание</label>
             <input type="text" class="form-control" id="Content"
                    aria-describedby="emailHelp" name="Content" th:field="*{content}">
           </div>
@@ -32,7 +32,7 @@
           <div class="form-group">
             <label for="Lesson">Урок</label>
             <input type="text" class="form-control" id="Lesson"
-                   aria-describedby="emailHelp" name="Lesson" th:field="*{lessonsContent}">
+                   aria-describedby="emailHelp" name="Lesson" th:field="*{tasksTest}">
           </div>
           <div style="margin-top: 12px;">
             <button type="submit" class="btn btn-success">Запазване</button>

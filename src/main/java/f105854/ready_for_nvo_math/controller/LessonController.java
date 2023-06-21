@@ -54,7 +54,7 @@ public class LessonController {
     @PostMapping(path = "/lessons/add")
     public String addLesson(@ModelAttribute Lesson lesson) {
         lessonService.addLesson(lesson);
-        return "redirect:/lessons";
+        return "redirect:/lessons/" + lesson.getId();
     }
 
     @GetMapping("/lessons/edit/{id}")

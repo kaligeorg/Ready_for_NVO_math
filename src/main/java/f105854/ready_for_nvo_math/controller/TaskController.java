@@ -24,29 +24,54 @@ public class TaskController {
         return "tasks";
     }
 
-    @GetMapping(path = "/tasks/add")
-    public String showAddTaskPage(Model model) {
+    @GetMapping(path = "/tasks/addToLesson")
+    public String showAddTaskPageLesson(Model model) {
         model.addAttribute("task", new Task());
         return "tasks-add";
     }
 
-    @PostMapping(path = "/tasks/add")
-    public String addTask(@ModelAttribute Task task) {
+    @PostMapping(path = "/tasks/addToLesson")
+    public String addTaskLesson(@ModelAttribute Task task) {
         taskService.addTask(task);
-        return "redirect:/tasks";
+        return "redirect:/lessons/" + task.getTasksLesson().getId();
     }
 
-    @GetMapping("/tasks/edit/{id}")
-    public String showUpdateForm(@PathVariable("id") int id, Model model) {
+    @GetMapping(path = "/tasks/addToTest")
+    public String showAddTaskPageTest(Model model) {
+        model.addAttribute("task", new Task());
+        return "tasks-add";
+    }
+
+    @PostMapping(path = "/tasks/addToTest")
+    public String addTaskTest(@ModelAttribute Task task) {
+        taskService.addTask(task);
+        return "redirect:/tests/" + task.getTasksTest().getId();
+    }
+
+    @GetMapping("/tasks/editTest/{id}")
+    public String showUpdateFormTest(@PathVariable("id") int id, Model model) {
         Task task = taskService.findTaskById(id);
         model.addAttribute("task", task);
         return "tasks-edit";
     }
 
-    @PostMapping("/tasks/edit/{id}")
-    public String updateTask(@ModelAttribute Task task) throws Exception {
+    @PostMapping("/tasks/editTest/{id}")
+    public String updateTaskTest(@ModelAttribute Task task) throws Exception {
         taskService.updateTask(task);
-        return "redirect:/tasks";
+        return "redirect:/tasks/" + task.getTasksTest().getId();
+    }
+
+    @GetMapping("/tasks/editLesson/{id}")
+    public String showUpdateFormLesson(@PathVariable("id") int id, Model model) {
+        Task task = taskService.findTaskById(id);
+        model.addAttribute("task", task);
+        return "tasks-edit";
+    }
+
+    @PostMapping("/tasks/editLesson/{id}")
+    public String updateTaskLesson(@ModelAttribute Task task) throws Exception {
+        taskService.updateTask(task);
+        return "redirect:/lessons/" + task.getTasksLesson().getId();
     }
 
     @GetMapping("/tasks/delete/{id}")

@@ -28,11 +28,14 @@
             </td>
             <td>
                 <a style="color:blue" th:href="@{/lessons/edit/{id}(id=${lesson.id})}"><i class="fa-solid fa-pen-to-square ms-4"></i></a>
+            </td>
+            <td>
                 <a style="color:red" th:href="@{/lessons/delete/{id}(id=${lesson.id})}"><i class="fa-solid fa-trash ms-4"></i></a>
             </td>
-
         </tr>
-
+        <tr>
+            <td colspan="9"><a th:href="@{/lessons/add}" style="text-align: center;">Добавяне на урок</a></td>
+        </tr>
         </tbody>
     </table>
 </div>
