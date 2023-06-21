@@ -20,7 +20,7 @@
             <div class="card-body" style="padding: 24px;">
                 <form action="#" th:action="@{/lessons/add}" th:object="${lesson}" method="post">
                     <div class="form-group">
-                        <label>Тема</label>
+                        <label>Заглавие</label>
                         <input type="text" class="form-control"
                                aria-describedby="emailHelp" name="Topic" th:field="*{title}">
                     </div>
