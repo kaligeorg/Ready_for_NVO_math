@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,15 +17,19 @@ public class MessageService {
     private MessageRepository messageRepository;
 
     @Autowired
-    private AdminService adminService;
+    private UserService userService;
 
     
     public List<Message> findAll(){
         return messageRepository.findAll();
     }
 
-    public List<Message> getUnansweredForms(@PathVariable("adminID") int adminID){
-        return adminService.findAdminById(adminID).getMessages().stream().filter(f-> !f.isAnswered()).collect(Collectors.toList());
+    public List<Message> findBySenderID(int id){
+        List<Message> messageList = new ArrayList<Message>();
+        for (Message message : messageRepository.findAll())
+            if (message.getSender().getId() == id)
+                messageList.add(message);
+        return messageList;
     }
 
     public Message findById(@PathVariable("id") int id){
@@ -39,6 +44,7 @@ public class MessageService {
     }
 
     public void addMessage(@ModelAttribute Message message) {
+        message.setSender(userService.getCurrentUser());
         messageRepository.save(message);
     }
 

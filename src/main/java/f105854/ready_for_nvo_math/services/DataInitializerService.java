@@ -58,30 +58,30 @@ public class DataInitializerService {
         //Creating admin
         userRepository.save(new User(0, "Калина", "Георгиева", "kaligeorgiewa@gmail.com",
                 "kaligeorg", passwordEncoder.encode("password"), true, RoleType.ADMIN,
-                null, null));
+                null, null, null));
         User admin = userRepository.findById(1).get();
-        adminRepository.save(new Admin(0, admin, null));
+        adminRepository.save(new Admin(0, admin));
 
 
         //Creating users
         userRepository.save(new User(0, "Мая", "Стоянова", "m_stoyanova@gmail.com",
                 "m_stoyanova", passwordEncoder.encode("password"), true, RoleType.TEACHER,
-                null, null));
+                null, null, null));
         userRepository.save(new User(0, "Симеон", "Радев", "s_radev@gmail.com",
                 "s_radev", passwordEncoder.encode("password"), true, RoleType.TEACHER,
-                null, null));
+                null, null, null));
         userRepository.save(new User(0, "Таня", "Пенева", "t_peneva@gmail.com",
                 "t_peneva", passwordEncoder.encode("password"), true, RoleType.TEACHER,
-                null, null));
+                null, null, null));
         userRepository.save(new User(0, "Деян", "Георгиев", "d_georgiev@gmail.com",
                 "d_georgiev", passwordEncoder.encode("password"), true, RoleType.STUDENT,
-                null, null));
+                null, null, null));
         userRepository.save(new User(0, "Камен", "Павлов", "k_pavlov@gmail.com",
                 "k_pavlov", passwordEncoder.encode("password"), true, RoleType.STUDENT,
-                null, null));
+                null, null, null));
         userRepository.save(new User(0, "Мария", "Даскалова", "m_daskalova@gmail.com",
                 "m_daskalova", passwordEncoder.encode("password"), true, RoleType.STUDENT,
-                null, null));
+                null, null, null));
 
         User user1 = userRepository.findById(2).get();
         User user2 = userRepository.findById(3).get();
@@ -176,8 +176,8 @@ public class DataInitializerService {
                 "https://www.geogebra.org/m/h3fkd8nh", topic2, lesson3, test2));
 
         //Creating Massages
-        messageRepository.save(new Message(0, "Ivan Ivanov", "ivan_ivanov@gmail.com",
-                "How can I register?"));
+        messageRepository.save(new Message(0, user1, "Как мога да създам задача?"));
+        messageRepository.save(new Message(0, user6, "Има грешка в условието на задача 2 в урок Призма."));
 
         System.out.println("Data initialization ends.");
     }

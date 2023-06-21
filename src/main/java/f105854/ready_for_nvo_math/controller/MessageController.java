@@ -2,7 +2,6 @@ package f105854.ready_for_nvo_math.controller;
 
 import constant.RoleType;
 import f105854.ready_for_nvo_math.model.Message;
-import f105854.ready_for_nvo_math.model.User;
 import f105854.ready_for_nvo_math.services.MessageService;
 import f105854.ready_for_nvo_math.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,27 +21,22 @@ public class MessageController {
 
     @Autowired
     private UserService userService;
-    private Message message;
-
-    @GetMapping(path = "/messages")
-    public String showAllFormsPage(Model model) {
-        List<Message> messages = this.messageService.findAll();
-        model.addAttribute("messages", messages);
-
-        return "messages";
-    }
-
 
     @GetMapping(path = "/unansweredMessages")
-    public String showUnansweredMessages(Model model) {
-        int adminID = 0;
-        if(userService.getCurrentUser().getRoleType() == RoleType.ADMIN)
-            adminID = userService.getCurrentUser().getId();
-        List<Message> unansweredForms = this.messageService.getUnansweredForms(adminID);
-        model.addAttribute("adminId", adminID);
-        model.addAttribute("unansweredForms", unansweredForms);
+    public String showAllFormsPage(Model model) {
+        List<Message> messages = messageService.findAll();
+        model.addAttribute("messages", messages);
 
         return "messages-unanswered";
+    }
+
+    @GetMapping(path = "/messages")
+    public String showMyFormsPage(Model model) {
+        int userId = userService.getCurrentUser().getId();
+        List<Message> messages = messageService.findBySenderID(userId);
+        model.addAttribute("messages", messages);
+
+        return "messages-sent";
     }
 
     @GetMapping("/messages/answer/{id}")
@@ -55,20 +49,19 @@ public class MessageController {
     @PostMapping("/messages/answer/{id}")
     public String answerMessage(@ModelAttribute Message message) throws Exception{
         messageService.answerMessage(message);
-        return "redirect:/messages";
+        return "redirect:/unansweredMessages";
     }
 
     @GetMapping(path = "/messages/add")
     public String showAddMessagePage(Model model) {
         model.addAttribute("message", new Message());
-
         return "messages-add";
     }
 
     @PostMapping(path = "/messages/add")
     public String addMessage(@ModelAttribute Message message) {
         messageService.addMessage(message);
-        return "redirect:/";
+        return "redirect:/messages";
     }
 
     @GetMapping("/messages/delete/{id}")

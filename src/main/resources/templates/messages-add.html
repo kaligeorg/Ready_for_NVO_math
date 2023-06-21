@@ -20,16 +20,6 @@
       <div class="card-body" style="padding: 24px;">
         <form action="#" th:action="@{/messages/add}" th:object="${message}" method="post">
           <div class="form-group">
-            <label>Име</label>
-            <input type="text" class="form-control"
-                   aria-describedby="emailHelp" name="Name" th:field="*{senderName}">
-          </div>
-          <div class="form-group">
-            <label>E-mail</label>
-            <input type="email" class="form-control"
-                   aria-describedby="emailHelp" name="Email" th:field="*{senderEmail}">
-          </div>
-          <div class="form-group">
             <label>Съобщение</label>
             <input type="text" class="form-control"
                    aria-describedby="emailHelp" name="Content" th:field="*{messageContent}">

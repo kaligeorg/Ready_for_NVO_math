@@ -2,6 +2,7 @@ package f105854.ready_for_nvo_math.model;
 
 import constant.RoleType;
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -25,11 +26,14 @@ public class User {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Student student;
 
+    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
+    List<Message> messageList;
+
     public User() {
     }
 
     public User(int id, String firstName, String lastName, String email, String username, String password,
-                boolean isActive, RoleType roleType, Teacher teacher, Student student) {
+                boolean isActive, RoleType roleType, Teacher teacher, Student student, List<Message> messageList) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -40,6 +44,7 @@ public class User {
         this.roleType = roleType;
         this.teacher = teacher;
         this.student = student;
+        this.messageList = messageList;
     }
 
     public int getId() {
@@ -120,5 +125,13 @@ public class User {
 
     public void setStudent(Student student) {
         this.student = student;
+    }
+
+    public List<Message> getMessageList() {
+        return messageList;
+    }
+
+    public void setMessageList(List<Message> messageList) {
+        this.messageList = messageList;
     }
 }

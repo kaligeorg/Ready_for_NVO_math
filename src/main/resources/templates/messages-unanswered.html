@@ -21,6 +21,7 @@
             <thead>
             <tr>
               <th scope="col">Име</th>
+              <th scope="col">Фамилия</th>
               <th scope="col">E-mail</th>
               <th scope="col">Съобщение</th>
               <th scope="col">Отговор</th>
@@ -28,19 +29,21 @@
             </thead>
             <div th:if="${messages.isEmpty()}">Няма съобщения</div>
             <tbody>
-            <tr th:each="message :${messages}">
-              <td th:text="${message.getSenderName()}"></td>
-              <td th:text="${message.getSenderEmail()}"></td>
+            <tr th:each="message : ${messages}">
+              <td th:text="${message.getSender().getFirstName()}"></td>
+              <td th:text="${message.getSender().getLastName()}"></td>
+              <td th:text="${message.getSender().getEmail()}"></td>
               <td th:text="${message.getMessageContent()}"></td>
               <td th:text="${message.getAnswer()}"></td>
               <td>
                 <a style="color:blue" th:href="@{/messages/answer/{id}(id=${message.id})}"><i class="fa-solid fa-pen-to-square ms-4"></i></a>
+              </td>
+              <td>
                 <a style="color:red" th:href="@{/messages/delete/{id}(id=${message.id})}"><i class="fa-solid fa-trash ms-4"></i></a>
               </td>
-
             </tr>
-
             </tbody>
+
           </table>
         </div>
       </div>

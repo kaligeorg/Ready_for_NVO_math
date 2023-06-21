@@ -33,6 +33,7 @@ public class RegistrationService {
                 true,
                 registrationRequest.getRoleType(),
                 null,
+                null,
                 null
         );
 

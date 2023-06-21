@@ -15,16 +15,13 @@ public class Admin {
     @JoinColumn(name = "user_id", nullable = true)
     User user;
 
-    @OneToMany(mappedBy = "relatedAdmin", cascade = CascadeType.ALL)
-    List<Message> messages;
 
     public Admin() {
     }
 
-    public Admin(int id, User user, List<Message> messages) {
+    public Admin(int id, User user) {
         this.id = id;
         this.user = user;
-        this.messages = messages;
     }
 
     public int getId() {
@@ -41,13 +38,5 @@ public class Admin {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public List<Message> getMessages() {
-        return messages;
-    }
-
-    public void setMessages(List<Message> messages) {
-        this.messages = messages;
     }
 }

@@ -10,15 +10,13 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    String senderName;
-    String senderEmail;
+    @ManyToOne
+    @JoinColumn(name = "messageList")
+    User sender;
+
     String messageContent;
     String answer;
     boolean isAnswered;
-
-    @ManyToOne
-    @JoinColumn(name = "admin_id")
-    Admin relatedAdmin;
 
     public Message() {
     }
@@ -27,24 +25,19 @@ public class Message {
         this.isAnswered = false;
     }
 
-    public Message(int id, String senderName, String senderEmail, String messageContent) {
+    public Message(int id, User sender, String messageContent) {
         this.id = id;
-        this.senderName = senderName;
-        this.senderEmail = senderEmail;
+        this.sender = sender;
         this.messageContent = messageContent;
     }
 
-
-
-    public Message(int id, String senderName, String senderEmail, String messageContent, String answer,
-                   boolean isAnswered, Admin relatedAdmin) {
+    public Message(int id, User sender, String messageContent, String answer,
+                   boolean isAnswered) {
         this.id = id;
-        this.senderName = senderName;
-        this.senderEmail = senderEmail;
+        this.sender = sender;
         this.messageContent = messageContent;
         this.answer = answer;
         this.isAnswered = isAnswered;
-        this.relatedAdmin = relatedAdmin;
     }
 
     public int getId() {
@@ -55,20 +48,12 @@ public class Message {
         this.id = id;
     }
 
-    public String getSenderName() {
-        return senderName;
+    public User getSender() {
+        return sender;
     }
 
-    public void setSenderName(String senderName) {
-        this.senderName = senderName;
-    }
-
-    public String getSenderEmail() {
-        return senderEmail;
-    }
-
-    public void setSenderEmail(String senderEmail) {
-        this.senderEmail = senderEmail;
+    public void setSender(User sender) {
+        this.sender = sender;
     }
 
     public String getMessageContent() {
@@ -95,11 +80,4 @@ public class Message {
         isAnswered = answered;
     }
 
-    public Admin getRelatedAdmin() {
-        return relatedAdmin;
-    }
-
-    public void setRelatedAdmin(Admin relatedAdmin) {
-        this.relatedAdmin = relatedAdmin;
-    }
 }
