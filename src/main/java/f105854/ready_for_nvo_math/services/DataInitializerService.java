@@ -126,7 +126,7 @@ public class DataInitializerService {
         //Creating content
         lessonContentRepository.save(new LessonContent(0, "Средната аритметична стойност е " +
                 "сумата от индивидуалните значения на всички единици от съвкупността, разделена на техния брой.",
-                null, lesson1));
+                "https://www.youtube.com/embed/SRScAQzOYBs", lesson1));
         lessonContentRepository.save(new LessonContent(0, "Медианата е числовата стойност, която разделя " +
                 "ранговия ред на две равни части.", null, lesson1));
         lessonContentRepository.save(new LessonContent(0, "Мода е най-често " +
