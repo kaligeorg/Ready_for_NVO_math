@@ -68,12 +68,13 @@ public class TestController {
     @PostMapping("/tests/edit/{id}")
     public String updateTest(@ModelAttribute Test test) throws Exception {
         testService.updateTest(test);
-        return "redirect:/tests";
+        return "redirect:/tests/" + test.getId();
     }
 
     @GetMapping("/tests/delete/{id}")
     public String deleteTest(@PathVariable("id") int id) {
+        int topicId = testService.findTestById(id).getTestsTopic().getId();
         testService.deleteTest(id);
-        return "redirect:/tests";
+        return "redirect:/testsInTopicForTeachers/" + topicId;
     }
 }

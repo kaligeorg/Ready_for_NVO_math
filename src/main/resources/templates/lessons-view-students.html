@@ -33,12 +33,13 @@
         <table class="table  table-striped table-hover" action="#" th:action="@{/lessons/${id}(id=${lesson.id})}" th:object="${lesson}">
           <thead>
           <tr>
-            <th colspan="7" style="text-align: center">Задачи към урока</th>
+            <th colspan="8" style="text-align: center">Задачи към урока</th>
           </tr>
           </thead>
           <tbody>
           <tr th:each="listOfTasksInLesson:${lesson.getListOfTasksInLesson()}">
-            <td th:text="${listOfTasksInLesson.getCondition()}" style="width: 70%"></td>
+            <td th:text="${listOfTasksInLesson.getCondition()}" th:width="${listOfTasksInLesson.getImage()}?'40%'"></td>
+            <td><iframe th:src="${listOfTasksInLesson.getImage()}" th:height="${listOfTasksInLesson.getImage()}?'300':'0'" th:width="${listOfTasksInLesson.getImage()}?'400':'0'"> </iframe></td>
             <td>А. <label th:text="${listOfTasksInLesson.getAnswer1()}"></label></td>
             <td>B. <label th:text="${listOfTasksInLesson.getAnswer2()}"></label></td>
             <td>C. <label th:text="${listOfTasksInLesson.getAnswer3()}"></label></td>

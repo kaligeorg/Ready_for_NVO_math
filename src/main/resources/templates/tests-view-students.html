@@ -20,12 +20,13 @@
         <table class="table  table-striped table-hover" action="#" th:action="@{/tests/${id}(id=${test.id})}" th:object="${test}">
           <thead>
           <tr>
-            <th th:text="${test.getTitle()}" colspan="7" style="text-align: center"></th>
+            <th th:text="${test.getTitle()}" colspan="8" style="text-align: center"></th>
           </tr>
           </thead>
           <tbody>
           <tr th:each="listOfTasksInTest:${test.getTasks()}">
-            <td th:text="${listOfTasksInTest.getCondition()}" style="width: 70%"></td>
+            <td th:text="${listOfTasksInTest.getCondition()}" th:width="${listOfTasksInTest.getImage()}?'40%'"></td>
+            <td><iframe th:src="${listOfTasksInTest.getImage()}" th:height="${listOfTasksInTest.getImage()}?'300':'0'" th:width="${listOfTasksInTest.getImage()}?'400':'0'"> </iframe></td>
             <td>А. <label th:text="${listOfTasksInTest.getAnswer1()}"></label></td>
             <td>B. <label th:text="${listOfTasksInTest.getAnswer2()}"></label></td>
             <td>C. <label th:text="${listOfTasksInTest.getAnswer3()}"></label></td>

@@ -56,7 +56,8 @@ public class LessonContentController {
 
     @GetMapping("/lessonContents/delete/{id}")
     public String deleteLessonContent(@PathVariable("id") int id) {
+        int lessonId = lessonContentService.findLessonContentById(id).getLessonsContent().getId();
         lessonContentService.deleteLessonContent(id);
-        return "redirect:/lessonContents";
+        return "redirect:/lessons/" + lessonId;
     }
 }

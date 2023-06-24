@@ -21,14 +21,15 @@
                     <thead>
                     <tr>
                         <th th:text="${test.getTitle()}" style="text-align: center" colspan="8"></th>
-                        <th>
+                        <th colspan="2">
                             <a style="color:blue" th:href="@{/tests/edit/{id}(id=${test.id})}"><i class="fa-solid fa-pen-to-square ms-4"></i></a>
                         </th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="listOfTasksInTest:${test.getTasks()}">
-                        <td th:text="${listOfTasksInTest.getCondition()}" style="width: 60%"></td>
+                        <td th:text="${listOfTasksInTest.getCondition()}" th:width="${listOfTasksInTest.getImage()}?'30%'"></td>
+                        <td><iframe th:src="${listOfTasksInTest.getImage()}" th:height="${listOfTasksInTest.getImage()}?'300':'0'" th:width="${listOfTasksInTest.getImage()}?'400':'0'"> </iframe></td>
                         <td>А. <label th:text="${listOfTasksInTest.getAnswer1()}"></label></td>
                         <td>B. <label th:text="${listOfTasksInTest.getAnswer2()}"></label></td>
                         <td>C. <label th:text="${listOfTasksInTest.getAnswer3()}"></label></td>
@@ -38,7 +39,7 @@
                         </td>
                         <td><label th:text="${listOfTasksInTest.getCorrectAnswer()}" th:id="'answer-'+${listOfTasksInTest.getId()}+''" style="display: none"></label></td>
                         <td><a style="color:blue" th:href="@{/tasks/editTest/{id}(id=${listOfTasksInTest.id})}"><i class="fa-solid fa-pen-to-square ms-4"></i></a></td>
-                        <td><a style="color:red" th:href="@{/tasks/delete/{id}(id=${listOfTasksInTest.id})}"><i class="fa-solid fa-trash ms-4"></i></a></td>
+                        <td><a style="color:red" th:href="@{/tasks/deleteFromTest/{id}(id=${listOfTasksInTest.id})}"><i class="fa-solid fa-trash ms-4"></i></a></td>
                     </tr>
                     <tr>
                         <td colspan="9"><a th:href="@{/tasks/addToTest}" style="text-align: center;">Добавяне на задача</a></td>

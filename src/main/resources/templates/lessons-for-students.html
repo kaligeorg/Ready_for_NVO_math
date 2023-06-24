@@ -24,7 +24,7 @@
     <tbody>
     <tr th:each="lesson :${lessons}">
       <td>
-        <a th:href="@{/lessons/{id}(id=${lesson.id})}"><p th:text="${lesson.getTitle()}"></p></a>
+        <a th:href="@{/lessons/view/{id}(id=${lesson.id})}"><p th:text="${lesson.getTitle()}"></p></a>
       </td>
     </tr>
 

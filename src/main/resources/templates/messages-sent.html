@@ -21,7 +21,7 @@
                     <thead>
                     <tr>
                         <th scope="col">Съобщение</th>
-                        <th scope="col">Отговор</th>
+                        <th scope="col" colspan="2">Отговор</th>
                     </tr>
                     </thead>
                     <div th:if="${messages.isEmpty()}">Няма съобщения</div>
@@ -29,9 +29,12 @@
                     <tr th:each="message :${messages}">
                         <td th:text="${message.getMessageContent()}"></td>
                         <td th:text="${message.getAnswer()}"></td>
+                        <td>
+                            <a style="color:red" th:href="@{/messages/deleteSent/{id}(id=${message.id})}"><i class="fa-solid fa-trash ms-4"></i></a>
+                        </td>
                     </tr>
                     <tr>
-                        <td colspan="2">
+                        <td colspan="3">
                             <a style="color:blue" th:href="@{/messages/add}">Изпращане на ново съобщение</i></a>
                         </td>
 
