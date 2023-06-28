@@ -67,10 +67,6 @@ public class LessonService {
     public void deleteLesson(@PathVariable("id") int id) {
         Lesson lesson = lessonRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid lesson ID: " + id));
-        for(LessonContent lessonContent: lesson.getLessonContents())
-            lessonContentRepository.delete(lessonContent);
-        for(Task task: lesson.getListOfTasksInLesson())
-            taskRepository.delete(task);
         lessonRepository.delete(lesson);
     }
 
