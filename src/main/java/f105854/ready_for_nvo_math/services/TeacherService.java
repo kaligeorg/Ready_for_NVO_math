@@ -15,7 +15,7 @@ public class TeacherService {
     @Autowired
     private TeacherRepository teacherRepository;
 
-    public List<Teacher> findAll(Model model) {
+    public List<Teacher> findAll() {
         List<Teacher> teachers = teacherRepository.findAll();
         return teachers;
     }

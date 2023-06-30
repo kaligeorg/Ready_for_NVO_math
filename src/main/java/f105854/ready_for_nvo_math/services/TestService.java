@@ -43,7 +43,7 @@ public class TestService {
     public void updateTest(@ModelAttribute Test test) throws Exception {
         Test testInDB = testRepository.findById(test.getId()).orElse(null);
         if (testInDB != null) {
-            testInDB.setTitle(testInDB.getTitle());
+            testInDB.setTitle(test.getTitle());
             testInDB.setTestsTopic(test.getTestsTopic());
             testInDB.setTasks(test.getTasks());
             testRepository.save(testInDB);

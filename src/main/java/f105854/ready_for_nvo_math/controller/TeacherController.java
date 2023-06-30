@@ -20,7 +20,7 @@ public class TeacherController {
 
     @GetMapping(path = "/teachers")
     public String showTeachersPage(Model model) {
-        List<Teacher> teachers = teacherService.findAll(model);
+        List<Teacher> teachers = teacherService.findAll();
         model.addAttribute("teachers", teachers);
         return "teachers";
     }
